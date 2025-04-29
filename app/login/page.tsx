@@ -7,6 +7,7 @@ import LoginBg from "../assets/img/loginBg.png";
 import { FaRegCopyright } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
 import Link from "next/link";
+import LoginButton from "../components/LoginButton";
 
 
 const LoginStyle = styled("div", {
@@ -54,6 +55,7 @@ const LoginCredentialContainer = styled("div", {
   justifyContent: "center",
   alignItems: "center",
   gap: "20px",
+  color: "$gray100",
 })
 
 const LoginFooterContainer = styled("div", {
@@ -85,7 +87,7 @@ export default function Login() {
           </Link>
         </LoginBackContainer>
         <LoginCredentialContainer>
-          <h1 className="text-2xl font-bold text-gray-100">Login</h1>
+          <LoginButton />
         </LoginCredentialContainer>
         <LoginFooterContainer>
           <FaRegCopyright color="#fff"/>

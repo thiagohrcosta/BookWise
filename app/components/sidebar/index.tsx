@@ -1,5 +1,6 @@
-import Image from "next/image";
+'use client'
 
+import Image from "next/image";
 import Logo from "../../assets/img/logo.svg";
 import { styled } from "../../../stitches.config";
 
@@ -13,6 +14,8 @@ import { FiLogIn } from "react-icons/fi";
 
 import Bg from "../../assets/img/Background.png";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+
 
 const SidebarStyle = styled("div", {
   backgroundImage: `url(${Bg.src})`,
@@ -51,6 +54,9 @@ const LoginLogoutStyle = styled("div", {
 })
 
 export default function Sidebar() {
+  const session = useSession();
+  const user = session.data?.user;
+
   return (
     <SidebarStyle>
       <Image
@@ -72,7 +78,7 @@ export default function Sidebar() {
       </div>
       <LoginLogoutStyle>
         <Link href="/login">
-          <span>LOGIN</span>
+          <span>{user?.name ?? "Login"}</span>
         </Link>
         <FiLogIn />
       </LoginLogoutStyle>
