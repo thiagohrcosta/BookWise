@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import { getCssText } from "../stitches.config";
-import "./globals.css";  // Importar seu arquivo global de CSS
+import "./globals.css";
+import { Providers } from "./providers";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -24,9 +25,11 @@ export default function RootLayout({
         <style id="stitches" dangerouslySetInnerHTML={{ __html: getCssText() }} />
       </head>
       <body className={`${nunito.variable} antialiased`} style={{ backgroundColor: "#0E1116" }}>
-        <div className="max-w-7xl mx-auto">
-          {children}
-        </div>
+        <Providers>
+          <div className="max-w-7xl mx-auto">
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   );

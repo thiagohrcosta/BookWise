@@ -2,19 +2,22 @@ import { styled } from "../stitches.config";
 import Book from "./components/book";
 import { BookReview } from "./components/bookReview";
 import PopularBook from "./components/popularBook";
+import Sidebar from "./components/sidebar";
 
 // Criando um componente estilizado "div" usando Stitches
 const StyledDiv = styled("div", {
-  color: '$gray100',
-  padding: '20px',
+  color: "$gray100",
+  padding: "20px 20px 20px 5px",
 });
 
 export default function Home() {
   return (
     <StyledDiv>
-      <div className="flex gap-4 justify-center">
-        <div className="flex-2/12">SIDEBAR</div>
-        <div className="w-auto flex-8/12">
+      <div className="flex gap-8 justify-center">
+        <div className="flex-2/12">
+          <Sidebar />
+        </div>
+        <div className="flex-6/12">
           <div>
             <h1 className="mb-8">Last books</h1>
             <div className="grid grid-cols-3 gap-4">
@@ -30,7 +33,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="w-12 flex-4/12">
+        <div className="w-12 flex-3/12">
           <h2 className="mb-8">POPULAR BOOKS</h2>
           <div>
             <PopularBook />
