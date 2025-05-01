@@ -1,4 +1,3 @@
-import { AiFillStar } from "react-icons/ai";
 import Book2 from "../../assets/img/book2.jpg";
 import Image from "next/image";
 import { styled } from "../../../stitches.config";
@@ -14,13 +13,6 @@ const PopularBookContainer = styled("div", {
   "&:hover": {
     backgroundColor: "$gray600",
   },
-})
-
-const StarContainer = styled("div", {
-  display: "flex",
-  gap: "4px",
-  alignItems: "center",
-  color: "$purple100",
 })
 
 export default function PopularBook() {

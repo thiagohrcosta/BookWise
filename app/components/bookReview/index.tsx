@@ -1,17 +1,7 @@
 import Image from "next/image";
 import Avatar from "../../assets/img/avatar.jpg";
-import { AiFillStar } from "react-icons/ai";
 import Book2 from "../../assets/img/book2.jpg";
-import { styled } from "../../../stitches.config";
 import Stars from "../stars";
-
-const StarContainer = styled("div", {
-  display: "flex",
-  gap: "4px",
-  alignItems: "center",
-  color: "$purple100",
-})
-
 
 export function BookReview() {
   return (
