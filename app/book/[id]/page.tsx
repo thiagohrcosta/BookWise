@@ -1,4 +1,4 @@
-import { stripe } from "../../lib/stripe"; // Verifique se a instância do Stripe está configurada corretamente
+import { stripe } from "../../lib/stripe";
 import Stripe from "stripe";
 
 interface BookPageProps {
@@ -10,7 +10,6 @@ interface BookPageProps {
 export default async function BookPage({ params }: BookPageProps) {
   const { id } = params;
 
-  // Buscando os dados do livro com o ID
   const product = await stripe.products.retrieve(id as string, {
     expand: ["default_price"],
   });
