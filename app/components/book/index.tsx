@@ -2,11 +2,12 @@ import Image from "next/image";
 
 type BookProps = {
   name: string;
+  description: string;
   imageUrl: string;
   price: string;
 };
 
-export default function Book({ name, imageUrl, price }: BookProps) {
+export default function Book({ name, description, imageUrl, price }: BookProps) {
   return (
     <div className="bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer">
       <Image

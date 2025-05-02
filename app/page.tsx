@@ -24,6 +24,7 @@ export default async function Home() {
     return {
       id: product.id,
       name: product.name,
+      description: product.description,
       imageUrl: product.images[0],
       price: new Intl.NumberFormat("en-US", {
         style: "currency",
