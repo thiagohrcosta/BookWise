@@ -106,6 +106,7 @@ const BookInfo = styled("div", {
   },
 
   ".review-info": {
+    marginBottom: "16px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

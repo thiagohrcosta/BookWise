@@ -8,6 +8,8 @@ interface LastBooksProps {
   books: {
     id: string;
     name: string;
+    author: string;
+    category: string;
     description: string;
     imageUrl: string;
     price: string;
@@ -24,6 +26,8 @@ export default function LastBooks({ books }: LastBooksProps) {
         <div key={book.id} onClick={() => setSelectedBook(book)}>
           <Book
             name={book.name}
+            author={book.author}
+            category={book.category}
             description={book.description}
             imageUrl={book.imageUrl}
             price={book.price}

@@ -17,6 +17,7 @@ export default async function Home() {
     expand: ["data.default_price"],
   });
 
+
   const books = response.data
   .map((product) => {
     const price = product.default_price as Stripe.Price;
@@ -24,6 +25,8 @@ export default async function Home() {
     return {
       id: product.id,
       name: product.name,
+      author: product.metadata["Author"],
+      category: product.metadata["Genre"],
       description: product.description,
       imageUrl: product.images[0],
       price: new Intl.NumberFormat("en-US", {
