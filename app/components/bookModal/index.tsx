@@ -4,7 +4,6 @@ import { styled } from "@stitches/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { IoClose } from "react-icons/io5";
-import Stars from "../stars";
 import { AiFillStar } from "react-icons/ai";
 import BookUserReview from "../bookUserReview";
 
@@ -113,6 +112,11 @@ const BookInfo = styled("div", {
   }
 });
 
+const ReviewContainer = styled("div", {
+  overflowY: "scroll",
+  maxHeight: "340px",
+});
+
 export default function BookModal({ book, isOpened, onClose }: BookModalProps) {
   const navigate = useRouter();
 
@@ -171,7 +175,10 @@ export default function BookModal({ book, isOpened, onClose }: BookModalProps) {
             </div>
           </div>
         </BookInfo>
-        <BookUserReview />
+        <ReviewContainer>
+          <BookUserReview />
+          <BookUserReview />
+        </ReviewContainer>
       </Content>
     </Overlay>
   );

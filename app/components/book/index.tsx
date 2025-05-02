@@ -21,7 +21,7 @@ export default function Book({ name, description, imageUrl, price }: BookProps) 
       <div className="flex align-center justify-between mt-2">
         <div>
           <h2 className="text-lg font-bold text-gray-100">{name}</h2>
-          <p className="text-sm text-gray-100">Autor Desconhecido</p>
+          <p className="text-sm text-gray-100">Author John Doe</p>
         </div>
         <div>
           <p className="text-sm text-gray-200">{price}</p>
