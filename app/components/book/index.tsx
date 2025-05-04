@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 type BookProps = {
+  id: string;
   name: string;
   author: string;
   category: string;
@@ -9,12 +10,12 @@ type BookProps = {
   price: string;
 };
 
-export default function Book({ name, author, category, description, imageUrl, price }: BookProps) {
+export default function Book({ name, author, imageUrl, price }: BookProps) {
   return (
     <div className="bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer">
       <Image
         src={imageUrl}
-        alt={`Capa do livro ${name}`}
+        alt={`Box cover ${name}`}
         layout="responsive"
         width={100}
         height={300}

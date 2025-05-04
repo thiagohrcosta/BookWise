@@ -27,7 +27,7 @@ export default async function Home() {
       name: product.name,
       author: product.metadata["Author"],
       category: product.metadata["Genre"],
-      description: product.description,
+      description: product.description ?? "",
       imageUrl: product.images[0],
       price: new Intl.NumberFormat("en-US", {
         style: "currency",

@@ -62,7 +62,7 @@ const BookContainer = styled("div", {
   }
 });
 
-const BuyButton = styled("button", {
+const BuyButton = styled("div", {
   width: "100%",
   background: "$green100",
   color: "$white",
@@ -71,6 +71,7 @@ const BuyButton = styled("button", {
   borderRadius: "4px",
   cursor: "pointer",
   fontSize: "1rem",
+  textAlign: "center",
 
   "&:hover": {
     background: "$green300",

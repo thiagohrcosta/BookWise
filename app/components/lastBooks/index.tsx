@@ -22,9 +22,10 @@ export default function LastBooks({ books }: LastBooksProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       <BookModal book={selectedBook} isOpened={!!selectedBook} onClose={() => setSelectedBook(null)} />
-      {books.map((book) => (
+      {books?.map((book) => (
         <div key={book.id} onClick={() => setSelectedBook(book)}>
           <Book
+            id={book.id}
             name={book.name}
             author={book.author}
             category={book.category}
