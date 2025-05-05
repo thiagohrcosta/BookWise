@@ -76,39 +76,26 @@ export default async function BookPage({params}: {params: Promise<{ id: string }
 
   return (
     <StyledDiv>
-      <div className="flex gap-8 justify-center">
-        <div className="flex-2/12">
-          <Sidebar />
+      <div className="book-information">
+        <div>
+          <Image
+            src={book.imageUrl}
+            alt={`Capa do livro ${book.name}`}
+            width={250}
+            height={350}
+          />
         </div>
-        <div className="flex-6/12">
-          <div className="book-information">
-            <div>
-              <Image
-                src={book.imageUrl}
-                alt={`Capa do livro ${book.name}`}
-                width={250}
-                height={350}
-              />
-            </div>
-            <div className="book-content">
-              <h1>{book.name}</h1>
-              <p className="book-author">{book.author}</p>
-              <p className="book-description">{book.description}</p>
+        <div className="book-content">
+          <h1>{book.name}</h1>
+          <p className="book-author">{book.author}</p>
+          <p className="book-description">{book.description}</p>
 
-              <div className="button-checkout">
-                <BuyButton
-                  price={book.price}
-                  priceId={price.id}
-                />
-              </div>
-            </div>
+          <div className="button-checkout">
+            <BuyButton
+              price={book.price}
+              priceId={price.id}
+            />
           </div>
-        </div>
-        <div className="w-12 flex-3/12">
-          <h2 className="mb-8">POPULAR BOOKS</h2>
-          <PopularBook />
-          <PopularBook />
-          <PopularBook />
         </div>
       </div>
     </StyledDiv>

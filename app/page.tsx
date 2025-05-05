@@ -39,28 +39,15 @@ export default async function Home() {
   .slice(0, 3);
 
   return (
-    <StyledDiv>
-      <div className="flex gap-8 justify-center">
-        <div className="flex-2/12">
-          <Sidebar />
-        </div>
-        <div className="flex-6/12">
-          <div>
-            <h1 className="mb-8">Last books</h1>
-            <LastBooks books={books} />
-          </div>
-          <div className="mt-8 mb-8">
-            <h2>Recent reviews</h2>
-            <BookReview />
-          </div>
-        </div>
-        <div className="w-12 flex-3/12">
-          <h2 className="mb-8">POPULAR BOOKS</h2>
-          <PopularBook />
-          <PopularBook />
-          <PopularBook />
-        </div>
+    <>
+      <div>
+        <h1 className="mb-8">Last books</h1>
+        <LastBooks books={books} />
       </div>
-    </StyledDiv>
+      <div className="mt-8 mb-8">
+        <h2>Recent reviews</h2>
+        <BookReview />
+      </div>
+    </>
   );
 }

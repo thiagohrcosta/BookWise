@@ -44,6 +44,16 @@ const SidebarItem = styled("li", {
   display: "flex",
   alignItems: "center",
   gap: "10px",
+
+  a: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+
+  span: {
+    marginLeft: 10,
+  }
 })
 
 const LoginLogoutStyle = styled("div", {
@@ -68,8 +78,18 @@ export default function Sidebar() {
       />
       <div>
         <SidebarList>
-          <SidebarItem><FaHome /> HOME</SidebarItem>
-          <SidebarItem><IoLibrary /> MY LIBRARY</SidebarItem>
+          <SidebarItem>
+            <Link href="/">
+              <FaHome />
+              <span>HOME</span>
+            </Link>
+          </SidebarItem>
+          <SidebarItem>
+            <Link href="/library">
+              <IoLibrary />
+              <span>MY LIBRARY</span>
+            </Link>
+          </SidebarItem>
           <SidebarItem><ImBooks /> BOOKS</SidebarItem>
           <SidebarItem><MdOutlineStarHalf /> REVIEWS</SidebarItem>
           <SidebarItem><BsPersonSquare /> AUTHORS</SidebarItem>
