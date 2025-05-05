@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { styled } from '../../../stitches.config';
-import { useStripeBooks } from '../../hooks/useStripeBooks';
-import BookModal from '../bookModal';
-import Book from '../book';
+import { styled } from "../../stitches.config";
+import Book from "../components/book";
+import { useStripeBooks } from "../hooks/useStripeBooks";
+import BookModal from "../components/bookModal";
 
 const BooksContainerStyle = styled("div", {
   display: "grid",
