@@ -1,4 +1,3 @@
-// app/page.tsx
 import Stripe from "stripe";
 import { styled } from "../stitches.config";
 import { stripe } from "./lib/stripe";
