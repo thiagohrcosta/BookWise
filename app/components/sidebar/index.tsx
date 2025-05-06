@@ -90,7 +90,12 @@ export default function Sidebar() {
               <span>MY LIBRARY</span>
             </Link>
           </SidebarItem>
-          <SidebarItem><ImBooks /> BOOKS</SidebarItem>
+          <SidebarItem>
+            <Link href="/books">
+              <ImBooks />
+              <span>BOOKS</span>
+            </Link>
+          </SidebarItem>
           <SidebarItem><MdOutlineStarHalf /> REVIEWS</SidebarItem>
           <SidebarItem><BsPersonSquare /> AUTHORS</SidebarItem>
           <SidebarItem><BiSolidCategory /> GENRES</SidebarItem>
