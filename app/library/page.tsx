@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import api from '../lib/axios';
 import Image from 'next/image';
 import { styled } from '../../stitches.config';
+import BookModal from '../components/bookModal';
 
 const MyBookStyle = styled("div", {
   color: "$gray100",
@@ -14,18 +15,22 @@ const MyBookStyle = styled("div", {
     gridTemplateColumns: "1fr 1fr 1fr",
     gap: 16,
     margin: 10,
-    cursor: "pointer",
 
-    img: {
-      width: "100%",
-      height: "310px",
-      borderRadius: 8,
+    ".book-card": {
+      cursor: "pointer",
+
+      img: {
+        width: "100%",
+        height: "310px",
+        borderRadius: 8,
+      }
     }
   }
 })
 
-export default function MyBooks()  {
+export default function MyBooks() {
   const [books, setBooks] = useState<any[]>([]);
+  const [selectedBook, setSelectedBook] = useState<any | null>(null);
   const { data: session, status } = useSession();
 
   useEffect(() => {
@@ -43,8 +48,6 @@ export default function MyBooks()  {
         },
       });
 
-      console.log("RESPOSTA", response.data)
-
       setBooks(response.data.books);
     } catch (err: any) {
       console.error("Erro ao carregar livros:", err);
@@ -58,14 +61,21 @@ export default function MyBooks()  {
   return (
     <MyBookStyle>
       <h1>Meus Livros</h1>
+
+      <BookModal
+        book={selectedBook}
+        isOpened={!!selectedBook}
+        onClose={() => setSelectedBook(null)}
+      />
+
       {books.length === 0 ? (
         <p>Você ainda não comprou nenhum livro.</p>
       ) : (
         <div className='books-container'>
           {books.map((book) => (
-            <div key={book.id} className="book-card">
+            <div key={book.id} className="book-card" onClick={() => {setSelectedBook(book); console.log(book)}}>
               <Image
-                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${book.cover_url}`}
+                src={book.imageUrl}
                 alt={book.title}
                 width={200}
                 height={300}
@@ -78,4 +88,4 @@ export default function MyBooks()  {
       )}
     </MyBookStyle>
   );
-};
+}

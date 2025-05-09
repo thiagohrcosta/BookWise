@@ -1,5 +1,6 @@
 import { styled } from "@stitches/react";
 import { AiFillStar } from "react-icons/ai";
+import { formatDistanceToNow } from "date-fns";
 
 const BookUserReviewContainer = styled("div", {
   backgroundColor: "$gray600",
@@ -24,13 +25,21 @@ const BookUserReviewContainer = styled("div", {
   }
 });
 
-export default function BookUserReview() {
+interface BookUserReviewProps {
+  id: string;
+  message: string;
+  rating: number;
+  email: string;
+  createdAt: string;
+}
+
+export default function BookUserReview({ id, message, rating, createdAt, email }: BookUserReviewProps) {
   return (
     <BookUserReviewContainer>
       <div className="review-container">
         <div>
-          <p>John Doe</p>
-          <p>Today</p>
+          <p>{email}</p>
+          <p>Posted {formatDistanceToNow(new Date(createdAt), { addSuffix: true })}</p>
         </div>
         <div className="stars-container">
           <AiFillStar />
@@ -41,11 +50,7 @@ export default function BookUserReview() {
         </div>
       </div>
       <div className="review-text">
-        <p>Tortor sed elementum dolor sed nunc elementum enim viverra. Massa tempus ac a adipiscing at
-          cursus senectus dui libero. Elementum lacus enim viverra arcu at ut amet convallis. Maecenas ac
-          fringilla blandit risus nibh praesent sagittis dapibus netus. Dignissim sed congue sed vel
-          faucibus purus dapibus pellentesque.
-        </p>
+        <p>{message}</p>
       </div>
 
     </BookUserReviewContainer>

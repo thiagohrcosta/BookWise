@@ -29,13 +29,15 @@ export default function Books() {
         onClose={() => setSelectedBook(null)}
       />
       <BooksContainerStyle>
-        {books?.map((book) => (
+        {books?.map((book: any) => (
           <div key={book.id} onClick={() => setSelectedBook(book)}>
             <Book
               id={book.id}
               name={book.name}
               author={book.author}
               category={book.category}
+              genre={book.genre}
+              pages={book.pages}
               description={book.description}
               imageUrl={book.imageUrl}
               price={book.price}
