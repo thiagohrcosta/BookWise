@@ -138,7 +138,7 @@ export default function BookModal({ book, isOpened, onClose }: BookModalProps) {
 
 
 
-  {console.log("OLHA", reviews)}
+  {console.log("Review", reviews)}
 
   useEffect(() => {
     if (!isOpened || !book || !session?.user?.email) return;
