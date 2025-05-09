@@ -6,6 +6,7 @@ import { Providers } from "./providers";
 import PopularBook from "./components/popularBook";
 import Sidebar from "./components/sidebar";
 import ReactQueryProvider from "./providers/react-query-provider";
+import { BookReviewProvider } from "./context/bookReviewContext";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -34,26 +35,28 @@ export default function RootLayout({
       </head>
       <body className={`${nunito.variable} antialiased`} style={{ backgroundColor: "#0E1116" }}>
         <ReactQueryProvider>
-          <Providers>
-            <div className="max-w-7xl mx-auto">
-              <StyledDiv>
-                <div className="flex gap-8 justify-center">
-                  <div className="flex-2/12">
-                    <Sidebar />
+          <BookReviewProvider>
+            <Providers>
+              <div className="max-w-7xl mx-auto">
+                <StyledDiv>
+                  <div className="flex gap-8 justify-center">
+                    <div className="flex-2/12">
+                      <Sidebar />
+                    </div>
+                    <div className="flex-6/12">
+                      {children}
+                    </div>
+                    <div className="w-12 flex-3/12">
+                      <h2 className="mb-8">POPULAR BOOKS</h2>
+                      <PopularBook />
+                      <PopularBook />
+                      <PopularBook />
+                    </div>
                   </div>
-                  <div className="flex-6/12">
-                    {children}
-                  </div>
-                  <div className="w-12 flex-3/12">
-                    <h2 className="mb-8">POPULAR BOOKS</h2>
-                    <PopularBook />
-                    <PopularBook />
-                    <PopularBook />
-                  </div>
-                </div>
-              </StyledDiv>
-            </div>
-          </Providers>
+                </StyledDiv>
+              </div>
+            </Providers>
+          </BookReviewProvider>
         </ReactQueryProvider>
       </body>
     </html>

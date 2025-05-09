@@ -1,21 +1,13 @@
 import Stripe from "stripe";
-import { styled } from "../stitches.config";
 import { stripe } from "./lib/stripe";
-import Sidebar from "./components/sidebar";
 import LastBooks from "./components/lastBooks";
 import { BookReview } from "./components/bookReview";
-import PopularBook from "./components/popularBook";
 
-const StyledDiv = styled("div", {
-  color: "$gray100",
-  padding: "20px 20px 20px 5px",
-});
 
 export default async function Home() {
   const response = await stripe.products.list({
     expand: ["data.default_price"],
   });
-
 
   const books = response.data
   .map((product) => {
@@ -26,6 +18,7 @@ export default async function Home() {
       name: product.name,
       author: product.metadata["Author"],
       category: product.metadata["Genre"],
+      pages: product.metadata["Pages"],
       description: product.description ?? "",
       imageUrl: product.images[0],
       price: new Intl.NumberFormat("en-US", {

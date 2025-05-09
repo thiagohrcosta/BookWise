@@ -48,7 +48,7 @@ export default function SuccessPage() {
       const data = await res.json();
       setBookInfo(data)
 
-      console.log(data)
+      console.log("DADOS", data)
 
       await fetch('http://localhost:3000/api/v1/user_books', {
         method: 'POST',
@@ -59,6 +59,8 @@ export default function SuccessPage() {
           email: data.email,
           title: data.book.name,
           sinopsis: data.book.sinopsis,
+          genre: data.book.genre,
+          pages: data.book.pages,
           price: data.book.price,
           cover_url: data.book.cover_url,
           author_name: data.book.author_name

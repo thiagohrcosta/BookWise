@@ -1,7 +1,5 @@
 import Stripe from "stripe";
 import { stripe } from "../../lib/stripe";
-import Sidebar from "../../components/sidebar";
-import PopularBook from "../../components/popularBook";
 import Image from "next/image";
 import { styled } from "../../../stitches.config";
 import BuyButton from "../../components/buyButton";
