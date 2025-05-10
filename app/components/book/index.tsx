@@ -5,9 +5,8 @@ type BookProps = {
   id: string;
   name: string;
   author: string;
-  pages: BigInt;
+  pages: number;
   genre: string;
-  category: string;
   description: string;
   imageUrl: string;
   price: string;

@@ -17,7 +17,8 @@ export async function GET() {
       id: product.id,
       name: product.name,
       author: product.metadata["Author"],
-      category: product.metadata["Genre"],
+      genre: product.metadata["Genre"],
+      pages: product.metadata["Pages"],
       description: product.description ?? "",
       imageUrl: product.images[0],
       price: new Intl.NumberFormat("en", {

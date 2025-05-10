@@ -71,7 +71,7 @@ export default function SuccessPage() {
     fetchSession()
   }, [])
 
-  if (!bookInfo) return <p>Carregando...</p>
+  if (!bookInfo) return <p>Loading...</p>
 
   return (
     <SuccessContainerStyle>

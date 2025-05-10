@@ -4,7 +4,7 @@ import { styled } from "@stitches/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { IoClose } from "react-icons/io5";
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import BookUserReview from "../bookUserReview";
 import { ReviewCard } from "../reviewCard";
 import { useBookReview } from "../../context/bookReviewContext";
@@ -13,7 +13,7 @@ import { useSession } from "next-auth/react";
 
 interface Book {
   id: string;
-  name: string;
+  title: string;
   description: string;
   pages: string;
   genre: string;
@@ -122,7 +122,7 @@ const BookInfo = styled("div", {
 
 const ReviewContainer = styled("div", {
   overflowY: "scroll",
-  maxHeight: "340px",
+  maxHeight: "300px",
   color: "$gray100"
 });
 
@@ -136,25 +136,18 @@ export default function BookModal({ book, isOpened, onClose }: BookModalProps) {
   const averageRating = reviewCount > 0 ? reviews?.data?.reduce((sum, r) => sum + r.rating, 0) / reviewCount : 0;
   const roundedRating = Math.round(averageRating);
 
-
-
   {console.log("Review", reviews)}
 
   useEffect(() => {
-    if (!isOpened || !book || !session?.user?.email) return;
+    if (!isOpened || !book) return;
 
-
-    fetchReviews(book.name, session.user.email)
+    fetchReviews(book.title || book.name, session?.user?.email)
   }, [isOpened, book, session]);
-
-  useEffect(() => {
-    handleCommentsDisplay(book)
-  }, [reviews])
 
   useEffect(() => {
     const loadReviews = async () => {
       setIsLoadingReviews(true)
-      await fetchReviews(book.name, session.user.email)
+      await fetchReviews(book.title || book.name, session.user.email)
       setIsLoadingReviews(false)
     }
 
@@ -162,6 +155,10 @@ export default function BookModal({ book, isOpened, onClose }: BookModalProps) {
       loadReviews()
     }
   }, [isOpened, book, session]);
+
+  useEffect(() => {
+    handleCommentsDisplay(book)
+  }, [reviews])
 
   function handleCommentsDisplay(book: any) {
     return (
@@ -180,12 +177,12 @@ export default function BookModal({ book, isOpened, onClose }: BookModalProps) {
             <BookContainer>
               <Image
                 src={book.imageUrl}
-                alt={book.name || "Book cover"}
+                alt={book.title || "Book cover"}
                 width={350}
                 height={300}
               />
               <div>
-                <h2>{book.name}</h2>
+                <h2>{book.title}</h2>
                 <p>{truncate(book.description, 150)}</p>
                 <BuyButton>
                   <button onClick={() => navigate.push(`/book/${book.id}`)}>Details</button>
@@ -203,13 +200,16 @@ export default function BookModal({ book, isOpened, onClose }: BookModalProps) {
                 </div>
                 <div>
                   <p>Pages</p>
-                  <p>{book.pages || 399}</p>
+                  <p>{book.pages}</p>
                 </div>
                 <div className="review-info">
                   <div className="flex align-center">
                     {Array.from({ length: 5 }, (_, index) => (
-                      <AiFillStar key={index} color={index < roundedRating ? "#facc15" : "#374151"} />
-                    ))}
+                      index < roundedRating
+                        ? <AiFillStar key={index} color="#8381D9" size={20} />
+                        : <AiOutlineStar key={index} color="#8381D9" size={20} />
+                      ))
+                    }
                   </div>
                   <p>{reviewCount} review(s)</p>
                 </div>
@@ -217,7 +217,7 @@ export default function BookModal({ book, isOpened, onClose }: BookModalProps) {
             </BookInfo>
             <ReviewContainer>
               {isLoadingReviews ? (
-                <p>Carregando avaliações...</p>
+                <p>Loading...</p>
               ) : reviews?.data?.length > 0 ? (
                 reviews.data.map((review, index) => (
                   <BookUserReview
