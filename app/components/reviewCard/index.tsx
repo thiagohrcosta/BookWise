@@ -97,8 +97,9 @@ export function ReviewCard({ book }: BookProps) {
 
     const response = await api.post("/api/v1/user_book_ratings", {user_book_ratings: data})
 
-    console.log(data)
-    console.log(response)
+    if (response.status === 200) {
+      window.location.href = "/library"
+    }
   }
 
   return (

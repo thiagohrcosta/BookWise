@@ -3,10 +3,10 @@ import { Nunito } from "next/font/google";
 import { getCssText, styled } from "../stitches.config";
 import "./globals.css";
 import { Providers } from "./providers";
-import PopularBook from "./components/popularBook";
 import Sidebar from "./components/sidebar";
 import ReactQueryProvider from "./providers/react-query-provider";
 import { BookReviewProvider } from "./context/bookReviewContext";
+import PopularBooks from "./components/popularBook";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -47,10 +47,7 @@ export default function RootLayout({
                       {children}
                     </div>
                     <div className="w-12 flex-3/12">
-                      <h2 className="mb-8">POPULAR BOOKS</h2>
-                      <PopularBook />
-                      <PopularBook />
-                      <PopularBook />
+                      <PopularBooks />
                     </div>
                   </div>
                 </StyledDiv>

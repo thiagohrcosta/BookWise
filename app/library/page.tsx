@@ -39,7 +39,7 @@ export default function MyBooks() {
     }
   }, [session]);
 
-  const fetchBooks = async (email: string) => {
+  async function fetchBooks(email: string) {
     try {
       const response = await api.get('/api/v1/user_books', {
         headers: {
@@ -47,7 +47,7 @@ export default function MyBooks() {
           'Authorization': `Bearer ${email}`,
         },
       });
-
+      console.log(response.data)
       setBooks(response.data.books);
     } catch (err: any) {
       console.error("Erro ao carregar livros:", err);

@@ -1,42 +1,81 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from '../../../stitches.config';
 import { useStripeBooks } from '../../hooks/useStripeBooks';
 import BookModal from '../bookModal';
 import Book from '../book';
+import Link from 'next/link';
 
-const BooksContainerStyle = styled("div", {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr 1fr",
+const HeaderStyle = styled("div", {
+  padding: "0 10px",
+  display: "flex",
+  justifyContent: "space-between",
+
+  h1: {
+    fontWeight: "bold",
+    borderBottom: `2px solid $purple100`
+  },
+
+  a: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "$purple100",
+    color: "$gray100",
+    height: 36,
+    width: "180px",
+    textAlign: "center",
+    borderRadius: 8,
+
+    '&:hover': {
+      background: "$purple200",
+    }
+  }
+})
+
+const BooksContainerStyle = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr 1fr',
   gap: 16,
   margin: 10,
-  cursor: "pointer",
+  cursor: 'pointer',
 });
 
 export default function Books() {
   const { data: books, isLoading, error } = useStripeBooks();
   const [selectedBook, setSelectedBook] = useState<null | any>(null);
+  const [randomBooks, setRandomBooks] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (books && books.length > 0 && randomBooks.length === 0) {
+      const shuffled = [...books].sort(() => Math.random() - 0.5).slice(0, 3);
+      setRandomBooks(shuffled);
+    }
+  }, [books]);
 
   if (isLoading) return <p>Loading books...</p>;
   if (error) return <p>Error while trying to fetch books. Try again later.</p>;
 
   return (
     <div>
+      <HeaderStyle>
+        <h1 className="mb-8">Last books</h1>
+        <Link href="/books">All books</Link>
+      </HeaderStyle>
       <BookModal
         book={selectedBook}
         isOpened={!!selectedBook}
         onClose={() => setSelectedBook(null)}
       />
       <BooksContainerStyle>
-        {books?.map((book: any) => (
+        {randomBooks.map((book) => (
           <div key={book.id} onClick={() => setSelectedBook(book)}>
             <Book
               id={book.id}
               name={book.name}
               author={book.author}
-              category={book.category}
-              genre={book.genre}
+              genre={book.category}
               pages={book.pages}
               description={book.description}
               imageUrl={book.imageUrl}
