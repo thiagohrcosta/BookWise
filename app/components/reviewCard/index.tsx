@@ -169,11 +169,15 @@ export function ReviewCard({ book }: BookProps) {
   async function handlePostReview(e) {
     e.preventDefault();
 
+    if (!session) {
+      return;
+    }
+
     const data = {
       message: bookComments,
       rating: bookRating,
       book_id: book.title,
-      user_id: session.user.email,
+      user_id: session.user?.email ?? "",
     }
 
     const response = await api.post("/api/v1/user_book_ratings", {user_book_ratings: data})
@@ -185,7 +189,6 @@ export function ReviewCard({ book }: BookProps) {
 
   return (
     <div>
-
       {isUserAddingAReview === false && (
         <ReviewMainButton>
           <button onClick={() => setIsUserAddingReview(!isUserAddingAReview)}>Post Review</button>

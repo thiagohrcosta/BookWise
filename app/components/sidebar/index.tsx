@@ -97,8 +97,12 @@ export default function Sidebar() {
             </Link>
           </SidebarItem>
           <SidebarItem><MdOutlineStarHalf /> REVIEWS</SidebarItem>
-          <SidebarItem><BsPersonSquare /> AUTHORS</SidebarItem>
-          <SidebarItem><BiSolidCategory /> GENRES</SidebarItem>
+          <SidebarItem>
+            <Link href="/profile">
+              <BiSolidCategory />
+              <span>PROFILE</span>
+            </Link>
+          </SidebarItem>
         </SidebarList>
       </div>
       <LoginLogoutStyle>
