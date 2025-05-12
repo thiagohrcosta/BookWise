@@ -2,8 +2,7 @@ import Stripe from "stripe";
 import { stripe } from "./lib/stripe";
 import LastBooks from "./components/lastBooks";
 import { BookReview } from "./components/bookReview";
-import { FaRegCopyright } from "react-icons/fa";
-
+import { GetBookReviews } from "./api/get-book-ratings/route";
 
 export default async function Home() {
   const response = await stripe.products.list({
@@ -31,7 +30,6 @@ export default async function Home() {
     .sort(() => Math.random() - 0.5)
     .slice(0, 3);
 
-      const currentYear = new Date().getFullYear();
 
   return (
     <>

@@ -5,25 +5,51 @@ import Image from 'next/image';
 import { styled } from '../../../stitches.config';
 import { GetPopularBooks } from '../../api/get-popular-books/route';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { IoIosArrowForward } from "react-icons/io";
+import Link from 'next/link';
 
-const HeaderPopularBookContainer = styled("div", {
-  h2: {
-    fontWeight: "bold",
-    borderBottom: `2px solid $purple100`
-  }
+const PopularBookStyle = styled("div", {
+  position: "fixed"
 })
 
-const PopularBookContainer = styled('div', {
-  display: 'flex',
-  backgroundColor: '$gray700',
-  borderRadius: '8px',
-  padding: '16px',
-  cursor: 'pointer',
-  marginBottom: '16px',
-  '&:hover': {
-    backgroundColor: '$gray600',
+const PopularBookContainer = styled("div", {
+  display: "flex",
+  backgroundColor: "$gray700",
+  borderRadius: "8px",
+  padding: "16px",
+  cursor: "pointer",
+  marginBottom: "16px",
+
+  "&:hover": {
+    backgroundColor: "$gray600",
   },
 });
+
+const HeaderPopularBookContainer = styled("div", {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: "42px",
+
+  h2: {
+    fontWeight: "bold",
+    borderBottom: `2px solid $purple100`,
+  },
+
+  ".see-all": {
+    a: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      cursor: "pointer",
+      color: "$purple100",
+
+      p: {
+        marginRight: "10px"
+      }
+    }
+  }
+})
 
 type Book = {
   id: number;
@@ -47,9 +73,15 @@ export default function PopularBooks() {
   }, [])
 
   return (
-    <div>
+    <PopularBookStyle>
       <HeaderPopularBookContainer>
-        <h2 className="mb-8">Popular Books</h2>
+        <h2>Popular Books</h2>
+        <div className="see-all">
+          <Link href={"/books"}>
+            <p>See all</p>
+            <IoIosArrowForward />
+          </Link>
+        </div>
       </HeaderPopularBookContainer>
       {books && books?.data?.map((book) => {
         return (
@@ -79,6 +111,6 @@ export default function PopularBooks() {
           </PopularBookContainer>
         )
       })}
-    </div>
+    </PopularBookStyle>
   );
 }
