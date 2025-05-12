@@ -1,7 +1,11 @@
 import { useState } from "react"
 import { styled } from "../../../stitches.config";
 import { IoStarOutline, IoStar } from "react-icons/io5";
+import { FaCheck } from "react-icons/fa";
+import { AiOutlineClose } from "react-icons/ai";
+
 import { useSession } from "next-auth/react";
+
 import api from "../../lib/axios";
 
 interface BookProps {
@@ -35,16 +39,57 @@ const ReviewContainer = styled("div", {
   }
 })
 
-const ReviewButton = styled("div", {
-  marginTop: 10,
+const ReviewMainButton = styled("div", {
+marginTop: 10,
   width: "100%",
-  background: "$purple100",
-  color: "$white",
+  height: "40px",
+  background: "$gray600",
+  color: "$green100",
   border: "none",
-  padding: "8px 16px",
   borderRadius: "4px",
   cursor: "pointer",
   fontSize: "1rem",
+
+  display: "flex",
+  justifyContent: "center",
+  textAlign: "center",
+
+  "&:hover": {
+    background: "$green200",
+  },
+  "&:active": {
+    background: "$green200",
+  },
+  "&:focus": {
+    outline: "none",
+    boxShadow: "0 0 0 2px $green200",
+  },
+
+  button: {
+    cursor: "pointer"
+  }
+})
+
+
+const ButtonsContainer = styled("div", {
+  display: "flex",
+  justifyContent: "flex-end",
+  gap: "10px"
+})
+
+const ReviewButton = styled("div", {
+  marginTop: 10,
+  width: "40px",
+  height: "40px",
+  background: "$gray600",
+  color: "$green100",
+  border: "none",
+  borderRadius: "4px",
+  cursor: "pointer",
+  fontSize: "1rem",
+
+  display: "flex",
+  justifyContent: "center",
   textAlign: "center",
 
   "&:hover": {
@@ -57,7 +102,43 @@ const ReviewButton = styled("div", {
     outline: "none",
     boxShadow: "0 0 0 2px $purple200",
   },
+
+  button: {
+    cursor: "pointer"
+  }
 })
+
+const CancelButton = styled("div", {
+  marginTop: 10,
+  width: "40px",
+  height: "40px",
+  background: "$gray600",
+  color: "$purple100",
+  border: "none",
+  borderRadius: "4px",
+  cursor: "pointer",
+  fontSize: "1rem",
+
+  display: "flex",
+  justifyContent: "center",
+  textAlign: "center",
+
+  "&:hover": {
+    background: "$purple200",
+  },
+  "&:active": {
+    background: "$purple200",
+  },
+  "&:focus": {
+    outline: "none",
+    boxShadow: "0 0 0 2px $purple200",
+  },
+
+  button: {
+    cursor: "pointer"
+  }
+})
+
 
 export function ReviewCard({ book }: BookProps) {
   const router = window.location.href.split("/")[3]
@@ -106,9 +187,9 @@ export function ReviewCard({ book }: BookProps) {
     <div>
 
       {isUserAddingAReview === false && (
-        <ReviewButton>
+        <ReviewMainButton>
           <button onClick={() => setIsUserAddingReview(!isUserAddingAReview)}>Post Review</button>
-        </ReviewButton>
+        </ReviewMainButton>
       )}
       {isUserAddingAReview && (
         <ReviewContainer>
@@ -132,9 +213,18 @@ export function ReviewCard({ book }: BookProps) {
             </div>
             <div className="review-content">
               <textarea rows={5} onChange={(e) => setBookComments(e.target.value)}/>
-              <ReviewButton>
-                <button onClick={(e) => handlePostReview(e)}>Post Review</button>
-              </ReviewButton>
+              <ButtonsContainer>
+                <CancelButton>
+                  <button onClick={() => setIsUserAddingReview(!isUserAddingAReview)}>
+                    <AiOutlineClose />
+                  </button>
+                </CancelButton>
+                <ReviewButton>
+                  <button onClick={(e) => handlePostReview(e)}>
+                    <FaCheck />
+                  </button>
+                </ReviewButton>
+              </ButtonsContainer>
             </div>
           </div>
         </ReviewContainer>

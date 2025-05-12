@@ -10,11 +10,16 @@ import BookModal from '../components/bookModal';
 const MyBookStyle = styled("div", {
   color: "$gray100",
 
+  h1: {
+    fontWeight: "bold",
+    borderBottom: "2px solid $purple100",
+  },
+
   ".books-container": {
     display: "grid",
     gridTemplateColumns: "1fr 1fr 1fr",
     gap: 16,
-    margin: 10,
+    margin: "20px 10px 0px 10px",
 
     ".book-card": {
       cursor: "pointer",
@@ -60,7 +65,7 @@ export default function MyBooks() {
 
   return (
     <MyBookStyle>
-      <h1>Meus Livros</h1>
+      <h1>My books</h1>
 
       <BookModal
         book={selectedBook}
