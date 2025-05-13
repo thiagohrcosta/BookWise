@@ -3,6 +3,17 @@ import { stripe } from "./lib/stripe";
 import LastBooks from "./components/lastBooks";
 import { BookReview } from "./components/bookReview";
 import { GetBookReviews } from "./api/get-book-ratings/route";
+import { styled } from "../stitches.config";
+
+const HomeStyle = styled("div", {
+  margin: "",
+
+  ".recent-reviews-title": {
+    marginBottom: 24,
+    borderBottom: "2px solid $purple100",
+    width: "105px"
+  }
+})
 
 export default async function Home() {
   const response = await stripe.products.list({
@@ -32,14 +43,14 @@ export default async function Home() {
 
 
   return (
-    <>
+    <HomeStyle>
       <div>
         <LastBooks books={books} />
       </div>
       <div className="mt-8 mb-8">
-        <h2>Recent reviews</h2>
+        <h2 className="recent-reviews-title">Recent reviews</h2>
         <BookReview />
       </div>
-    </>
+    </HomeStyle>
   );
 }

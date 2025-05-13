@@ -20,8 +20,6 @@ const LoginCredentialContainer = styled("div", {
 })
 
 export default function Login() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <LoginStyle>
       <LoginCredentialContainer>
