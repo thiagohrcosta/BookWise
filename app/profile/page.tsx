@@ -2,7 +2,6 @@
 
 import { GoPerson } from "react-icons/go";
 import { CiSearch } from "react-icons/ci";
-
 import { styled } from "../../stitches.config";
 import { useEffect, useState } from "react";
 import { GetUserBookReviews } from "../api/get-user-book-reviews/route";
@@ -57,6 +56,7 @@ const BookReviewContainer = styled("div", {
 
 export default function Profile() {
   const [reviewedBooks, setReviewedBooks] = useState<any[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const session = useSession();
   const user = session.data?.user;
 
@@ -65,14 +65,18 @@ export default function Profile() {
       GetUserBookReviews(user.email).then(async (response) => {
         if (response) {
           const data = await response.data
-          console.log("CHEGOU", data)
           setReviewedBooks(data || []);
         } else {
           console.error("Failed to fetch user book reviews");
         }
       });
     }
-  }, [user?.email])
+  }, [user?.email]);
+
+  const filteredBooks = reviewedBooks.filter((review) => {
+    const title = review.book_name || "";
+    return title.toLowerCase().startsWith(searchTerm.trim().toLowerCase());
+  });
 
   return (
     <ProfileContainer>
@@ -81,18 +85,21 @@ export default function Profile() {
         <h2>Profile</h2>
       </ProfileHeader>
       <ProfileSearchBar>
-        <input type="text" placeholder="Search for a book reviewed by you." />
+        <input
+          type="text"
+          placeholder="Search for a book reviewed by you."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
         <CiSearch size={32} />
       </ProfileSearchBar>
-      {reviewedBooks ? (reviewedBooks.map((review, idx) => {
-        return (
+      {filteredBooks.length > 0 ? (
+        filteredBooks.map((review, idx) => (
           <BookReviewContainer key={idx}>
-            <BookReviewCard
-              bookReview={review}
-            />
+            <BookReviewCard bookReview={review} />
           </BookReviewContainer>
-        )
-      })) : (
+        ))
+      ) : (
         <span>You don't have any review yet.</span>
       )}
     </ProfileContainer>

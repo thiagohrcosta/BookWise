@@ -2,7 +2,6 @@ import Stripe from "stripe";
 import { stripe } from "./lib/stripe";
 import LastBooks from "./components/lastBooks";
 import { BookReview } from "./components/bookReview";
-import { GetBookReviews } from "./api/get-book-ratings/route";
 import { styled } from "../stitches.config";
 
 const HomeStyle = styled("div", {

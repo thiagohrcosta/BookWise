@@ -6,7 +6,7 @@ import { Providers } from "./providers";
 import Sidebar from "./components/sidebar";
 import ReactQueryProvider from "./providers/react-query-provider";
 import { BookReviewProvider } from "./context/bookReviewContext";
-import PopularBooks from "./components/popularBook";
+import { UserNavigation } from "./components/userNavigation";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -47,7 +47,7 @@ export default function RootLayout({
                       {children}
                     </div>
                     <div className="w-12 flex-3/12">
-                      <PopularBooks />
+                      <UserNavigation />
                     </div>
                   </div>
                 </StyledDiv>
