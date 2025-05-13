@@ -84,12 +84,14 @@ export default function Sidebar() {
               <span>HOME</span>
             </Link>
           </SidebarItem>
-          <SidebarItem>
-            <Link href="/library">
-              <IoLibrary />
-              <span>MY LIBRARY</span>
-            </Link>
-          </SidebarItem>
+          {user && (
+            <SidebarItem>
+              <Link href="/library">
+                <IoLibrary />
+                <span>MY LIBRARY</span>
+              </Link>
+            </SidebarItem>
+          )}
           <SidebarItem>
             <Link href="/books">
               <ImBooks />
@@ -97,8 +99,14 @@ export default function Sidebar() {
             </Link>
           </SidebarItem>
           <SidebarItem><MdOutlineStarHalf /> REVIEWS</SidebarItem>
-          <SidebarItem><BsPersonSquare /> AUTHORS</SidebarItem>
-          <SidebarItem><BiSolidCategory /> GENRES</SidebarItem>
+          {user && (
+            <SidebarItem>
+              <Link href="/profile">
+                <BiSolidCategory />
+                <span>PROFILE</span>
+              </Link>
+            </SidebarItem>
+          )}
         </SidebarList>
       </div>
       <LoginLogoutStyle>
