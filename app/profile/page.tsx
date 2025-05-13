@@ -1,7 +1,12 @@
+"use client"
+
 import { GoPerson } from "react-icons/go";
 import { CiSearch } from "react-icons/ci";
 
 import { styled } from "../../stitches.config";
+import { useEffect, useState } from "react";
+import { GetUserBookReviews } from "../api/get-user-book-reviews/route";
+import { BookReviewCard } from "../components/bookReviewCard";
 
 const ProfileContainer = styled("div", {
   margin: "32px 64px",
@@ -41,6 +46,19 @@ const ProfileSearchBar = styled("div", {
 })
 
 export default function Profile() {
+  const [reviewedBooks, setReviewedBooks] = useState<any[]>([]);
+
+  useEffect(() => {
+    GetUserBookReviews().then(async (response) => {
+      if (response.ok) {
+        const data = await response.json();
+        setReviewedBooks(data.books || []);
+      } else {
+        console.error("Failed to fetch user book reviews");
+      }
+    });
+  })
+
   return (
     <ProfileContainer>
       <ProfileHeader>
@@ -51,6 +69,13 @@ export default function Profile() {
         <input type="text" placeholder="Search for a book reviewed by you." />
         <CiSearch size={32} />
       </ProfileSearchBar>
+      {reviewedBooks && reviewedBooks.map((review) => {
+        return (
+          <BookReviewCard
+            bookReview={review}
+          />
+        )
+      })}
     </ProfileContainer>
   )
 }
