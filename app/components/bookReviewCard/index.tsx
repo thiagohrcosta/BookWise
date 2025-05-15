@@ -7,6 +7,7 @@ interface BookReview {
   user_email: string;
   created_at: string;
   book_cover: string;
+  rating: number;
   book_name: string;
   author_name: string;
   message: string;
@@ -57,7 +58,7 @@ export function BookReviewCard({ bookReview }: { bookReview: BookReview }) {
             <p>Posted {formatDistanceToNow(new Date(bookReview.created_at), { addSuffix: true })}</p>
           </div>
         </div>
-        <Stars />
+        <Stars rating={bookReview.rating} />
       </div>
       <div className="review-content">
         <div className="flex">

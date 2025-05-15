@@ -1,5 +1,9 @@
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { styled } from "../../../stitches.config";
+
+interface StarProps {
+  rating: number;
+}
 
 const StarContainer = styled("div", {
   display: "flex",
@@ -8,14 +12,12 @@ const StarContainer = styled("div", {
   color: "$purple100",
 })
 
-export default function Stars() {
+export default function Stars( { rating }: StarProps) {
   return (
     <StarContainer>
-      <AiFillStar />
-      <AiFillStar />
-      <AiFillStar />
-      <AiFillStar />
-      <AiFillStar />
+      {[...Array(5)].map((_, index) =>
+        index < rating ? <AiFillStar key={index} /> : <AiOutlineStar key={index} />
+      )}
     </StarContainer>
   );
 }
