@@ -135,8 +135,20 @@ export default function BookModal({ book, isOpened, onClose }: BookModalProps) {
   const reviewCount = reviews?.data?.length || 0;
   const averageRating = reviewCount > 0 ? reviews?.data?.reduce((sum, r) => sum + r.rating, 0) / reviewCount : 0;
   const roundedRating = Math.round(averageRating);
+  const [userIsAtLibrary, setUserIsAtLibrary] = useState(false);
 
   {console.log("Review", reviews)}
+
+  useEffect(() => {
+    const splitedUrl = window.location.href.split("/");
+    const urlLength = splitedUrl.length;
+
+    console.log(splitedUrl[urlLength - 1])
+
+    if (splitedUrl[urlLength - 1] === "library") {
+      setUserIsAtLibrary(true)
+    }
+  }, [])
 
   useEffect(() => {
     if (!isOpened || !book) return;
@@ -184,9 +196,11 @@ export default function BookModal({ book, isOpened, onClose }: BookModalProps) {
               <div>
                 <h2>{book.title}</h2>
                 <p>{truncate(book.description, 150)}</p>
-                <BuyButton>
-                  <button onClick={() => navigate.push(`/book/${book.id}`)}>Details</button>
-                </BuyButton>
+                {userIsAtLibrary === false && (
+                  <BuyButton>
+                    <button onClick={() => navigate.push(`/book/${book.id}`)}>Details</button>
+                  </BuyButton>
+                )}
               </div>
             </BookContainer>
             <BookInfo>
