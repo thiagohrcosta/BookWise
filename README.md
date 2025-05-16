@@ -33,16 +33,27 @@ The objective is to showcase solid experience as a **fullstack software develope
 - GDPR-compliant data management (only email is stored)
 
 ### 📚 Explore Books
+
+![image](https://github.com/user-attachments/assets/b992c574-2ef3-4148-9fcf-a12c8aa60860)
+
 - View an organized bookshelf with filters and categories
 - View detailed information for each book (cover, description, reviews)
 
 ### ⭐ Review System
+
+![image](https://github.com/user-attachments/assets/62b682e2-88cb-4cef-8f53-f85a714089bc)
+
+![image](https://github.com/user-attachments/assets/b4c22f5c-bb53-4472-8476-c3d66b0d6f97)
+
 - Add personal **ratings and reviews**
 - View public reviews from other users
 - Update or delete your own reviews
 - Visual feedback with stars and timestamps
 
 ### 🛍️ Buy Books
+
+![image](https://github.com/user-attachments/assets/3554e192-dff9-4355-9a25-e2607735b847)
+
 - Add books to cart and proceed to **secure checkout**
 - Payments processed through **Stripe**
 - Receive confirmation of purchase
