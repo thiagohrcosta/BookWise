@@ -12,19 +12,16 @@ The objective is to showcase solid experience as a **fullstack software develope
 ### Frontend
 - **Next.js** – React framework for SSR and SSG
 - **React** – Component-based architecture
-- **TailwindCSS** – Utility-first CSS styling
+- **Stitches** – For styling
 - **TypeScript** – Type-safe development
 - **NextAuth** – Secure Google OAuth login
-- **Radix UI** – Accessible UI components
 - **Stripe.js** – Client-side payment integration
-- **Phosphor Icons** – Flexible icon set
-- **Cloudinary** – Cloud-based image hosting and optimization
 
 ### Backend
 - **Ruby on Rails (API-only)** – Robust API backend
 - **PostgreSQL** – Relational database
-- **Stripe Ruby SDK** – Payment logic and webhook handling
 - **Active Record** – ORM for database management
+- **Cloudinary** – Cloud-based image hosting and optimization
 
 ---
 
