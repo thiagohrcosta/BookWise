@@ -7,6 +7,21 @@ import BookModal from '../bookModal';
 import Book from '../book';
 import Link from 'next/link';
 
+interface Book {
+  id: string;
+  name: string;
+  author: string;
+  category: string;
+  pages: string;
+  description: string;
+  imageUrl: string;
+  price: string;
+}
+
+interface LastBooksProps {
+  books: Book[];
+}
+
 const HeaderStyle = styled("div", {
   padding: "0 10px",
   display: "flex",
@@ -14,7 +29,8 @@ const HeaderStyle = styled("div", {
 
   h1: {
     fontWeight: "bold",
-    borderBottom: `2px solid $purple100`
+    borderBottom: `2px solid $purple100`,
+    marginBottom: 32
   },
 
   a: {
@@ -60,7 +76,7 @@ export default function Books() {
   return (
     <div>
       <HeaderStyle>
-        <h1 className="mb-8">Last books</h1>
+        <h1>Last books</h1>
         <Link href="/books">All books</Link>
       </HeaderStyle>
       <BookModal

@@ -35,8 +35,21 @@ const SuccessContainerStyle = styled("div", {
   }
 })
 
+type BookInfo = {
+  email: string
+  book: {
+    name: string
+    sinopsis: string
+    genre: string
+    pages: number
+    price: number
+    cover_url: string
+    author_name: string
+  }
+}
+
 export default function SuccessPage() {
-  const [bookInfo, setBookInfo] = useState(null)
+  const [bookInfo, setBookInfo] = useState<BookInfo | null>(null)
 
   useEffect(() => {
     const fetchSession = async () => {

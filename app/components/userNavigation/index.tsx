@@ -9,6 +9,13 @@ import VerticalBar from "../../assets/img/bar.png";
 import { GetUserProfile } from "../../api/get-user-profile/route";
 import { IoBookOutline } from "react-icons/io5";
 
+interface UserProfileProps {
+  read_pages: number;
+  books_rated: number;
+  authors_read: number;
+  most_read_genre: string;
+}
+
 const ProfileStyle = styled("div", {
   position: "sticky",
   top: "20px",
@@ -69,7 +76,7 @@ export function UserNavigation() {
   const session = useSession();
   const user = session.data?.user;
 
-  const [userProfile, setUserProfile] = useState([])
+  const [userProfile, setUserProfile] = useState<UserProfileProps>()
 
   useEffect(() => {
     const currentUrl = window.location.href;
@@ -119,28 +126,28 @@ export function UserNavigation() {
           <ProfileInformation>
             <IoBookOutline size={32} />
             <div>
-              <p>{userProfile.read_pages}</p>
+              <p>{userProfile?.read_pages}</p>
               <p>Pages read</p>
             </div>
           </ProfileInformation>
           <ProfileInformation>
             <IoBookOutline size={32} />
             <div>
-              <p>{userProfile.books_rated}</p>
+              <p>{userProfile?.books_rated}</p>
               <p>Books rated</p>
             </div>
           </ProfileInformation>
           <ProfileInformation>
             <IoBookOutline size={32} />
             <div>
-              <p>{userProfile.authors_read}</p>
+              <p>{userProfile?.authors_read}</p>
               <p>Authors read</p>
             </div>
           </ProfileInformation>
           <ProfileInformation>
             <IoBookOutline size={32} />
             <div>
-              <p>{userProfile.most_read_genre}</p>
+              <p>{userProfile?.most_read_genre}</p>
               <p>Most read genre</p>
             </div>
           </ProfileInformation>

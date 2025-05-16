@@ -1,12 +1,7 @@
 "use client"
 
-import Image from "next/image";
-import Avatar from "../../assets/img/avatar.jpg";
-import Book2 from "../../assets/img/book2.jpg";
-import Stars from "../stars";
 import { GetBookReviews } from "../../api/get-book-ratings/route";
 import { useEffect, useState } from "react";
-import { formatDistanceToNow } from "date-fns";
 import { styled } from "../../../stitches.config";
 import { BookReviewCard } from "../bookReviewCard";
 

@@ -8,6 +8,13 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { IoIosArrowForward } from "react-icons/io";
 import Link from 'next/link';
 
+type Book = {
+  id: number;
+  title: string;
+  author: { name: string };
+  cover_url: string | null;
+};
+
 const PopularBookStyle = styled("div", {
   position: "fixed"
 })
@@ -22,6 +29,26 @@ const PopularBookContainer = styled("div", {
 
   "&:hover": {
     backgroundColor: "$gray600",
+  },
+
+
+  ".popular-book-info": {
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "column",
+    marginLeft: 32,
+
+    ".book-title": {
+      color: "gray100"
+    },
+
+    ".author-name": {
+      color: "$gray400"
+    },
+
+    ".stars-container": {
+      display: "flex"
+    }
   },
 });
 
@@ -48,15 +75,11 @@ const HeaderPopularBookContainer = styled("div", {
         marginRight: "10px"
       }
     }
-  }
+  },
 })
 
-type Book = {
-  id: number;
-  title: string;
-  author: { name: string };
-  cover_url: string | null;
-};
+
+
 
 export default function PopularBooks() {
   const [books, setBooks] = useState([])
@@ -83,7 +106,7 @@ export default function PopularBooks() {
           </Link>
         </div>
       </HeaderPopularBookContainer>
-      {books && books?.data?.map((book) => {
+      {books && books?.data?.map((book: Book) => {
         return (
           <PopularBookContainer key={book.id}>
             <div>
@@ -95,12 +118,12 @@ export default function PopularBooks() {
                 className="rounded-lg"
               />
             </div>
-            <div className="flex flex-col justify-between ml-4">
-              <div>
-                <p className="text-gray-100 font-bold">{book.title}</p>
-                <p className="text-gray-400">{book.author_name}</p>
+            <div className="popular-book-info">
+              <div className="book-info">
+                <p className="book-title">{book.title}</p>
+                <p className="author-name">{book.author_name}</p>
               </div>
-              <div className="flex">
+              <div className="stars-container">
                 {Array.from({ length: 5 }, (_, index) => (
                   index < book.ratings
                     ? <AiFillStar key={index} color="#8381D9" size={20} />

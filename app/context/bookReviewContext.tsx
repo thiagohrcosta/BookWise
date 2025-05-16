@@ -31,7 +31,7 @@ export function BookReviewProvider({ children }: { children: ReactNode }) {
       );
       setReviews(response.data);
     } catch (error) {
-      console.error("Erro ao buscar reviews:", error);
+      console.error("Error while trying to fetch books:", error);
       setReviews([]);
     }
   }
