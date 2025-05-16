@@ -8,7 +8,6 @@ import { FaHome } from "react-icons/fa";
 import { IoLibrary } from "react-icons/io5";
 import { ImBooks } from "react-icons/im";
 import { MdOutlineStarHalf } from "react-icons/md";
-import { BsPersonSquare } from "react-icons/bs";
 import { BiSolidCategory } from "react-icons/bi";
 import { FiLogIn } from "react-icons/fi";
 

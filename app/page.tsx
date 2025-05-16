@@ -5,9 +5,8 @@ import { BookReview } from "./components/bookReview";
 import { styled } from "../stitches.config";
 
 const HomeStyle = styled("div", {
-  margin: "",
-
   ".recent-reviews-title": {
+    marginTop: 24,
     marginBottom: 24,
     borderBottom: "2px solid $purple100",
     width: "105px"
@@ -44,9 +43,9 @@ export default async function Home() {
   return (
     <HomeStyle>
       <div>
-        <LastBooks books={books} />
+        <LastBooks />
       </div>
-      <div className="mt-8 mb-8">
+      <div className="">
         <h2 className="recent-reviews-title">Recent reviews</h2>
         <BookReview />
       </div>

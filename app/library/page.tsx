@@ -74,7 +74,7 @@ export default function MyBooks() {
       />
 
       {books.length === 0 ? (
-        <p>Você ainda não comprou nenhum livro.</p>
+        <p>You didn't buy any book yet.</p>
       ) : (
         <div className='books-container'>
           {books.map((book) => (

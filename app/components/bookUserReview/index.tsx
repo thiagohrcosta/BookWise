@@ -1,5 +1,5 @@
 import { styled } from "@stitches/react";
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { formatDistanceToNow } from "date-fns";
 
 const BookUserReviewContainer = styled("div", {
@@ -42,11 +42,9 @@ export default function BookUserReview({ id, message, rating, createdAt, email }
           <p>Posted {formatDistanceToNow(new Date(createdAt), { addSuffix: true })}</p>
         </div>
         <div className="stars-container">
-          <AiFillStar />
-          <AiFillStar />
-          <AiFillStar />
-          <AiFillStar />
-          <AiFillStar />
+          {[...Array(5)].map((_, index) =>
+            index < rating ? <AiFillStar key={index} /> : <AiOutlineStar key={index} />
+          )}
         </div>
       </div>
       <div className="review-text">

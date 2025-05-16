@@ -14,6 +14,7 @@ import { useSession } from "next-auth/react";
 interface Book {
   id: string;
   title: string;
+  name: string;
   description: string;
   pages: string;
   genre: string;
