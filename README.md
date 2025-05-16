@@ -1,7 +1,7 @@
 # 📚 BookWise
 ![image](https://github.com/user-attachments/assets/46feac58-0d69-48f8-a4ab-86159066e8cc)
 
-BookWise is a **capstone-level fullstack web application** developed as the final project of the **React specialization bootcamp by Rocketseat University of Technology**, a program with over 100 hours of intensive training. While the original version was a simple serverless challenge, this expanded edition transforms it into a **fully integrated e-commerce and book review platform**, with a custom backend, external services, and modern frontend.
+BookWise is a **capstone-level fullstack web application** developed as the final project of the **React specialization bootcamp by Rocketseat University of Technology**, a program with over 50 hours of intensive training. While the original version was a simple serverless challenge, this expanded edition transforms it into a **fully integrated e-commerce and book review platform**, with a custom backend, external services, and modern frontend.
 
 The objective is to showcase solid experience as a **fullstack software developer**, capable of building scalable, secure, and production-ready applications with modern tools and best practices.
 
@@ -103,4 +103,9 @@ cd backend
 touch .env  # Fill with Cloudinary API Kei
 bundle install
 rails db:create db:migrate
-rails s`
+rails s
+```
+
+### Certificate
+![image](https://github.com/user-attachments/assets/bfa17895-d7c9-4d80-a60a-7ac7dc265017)
+
